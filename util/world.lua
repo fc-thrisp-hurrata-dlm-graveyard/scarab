@@ -13,16 +13,16 @@ local function initialize(game)
     world:addSystem(gw)
    
     -- local window variables
-    local window = gw:Current()
-    local root = window.scene 
+    --local window = gw:Current()
+    --local root = window.scene 
 
     -- game input system
-    gi:Init(window, broker)
-    world:addSystem(gi)
+    --gi:Init(window, broker)
+    --world:addSystem(gi)
 
     -- ui system
-    ui:Init(root, broker)
-    world:addSystem(ui)
+    --ui:Init(root, broker)
+    --world:addSystem(ui)
 
     return world
 end
