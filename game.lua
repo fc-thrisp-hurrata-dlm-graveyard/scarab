@@ -1,16 +1,18 @@
 require "util.class"
-local b = require "util.broker"
-local w = require "util.world"
+local c = require "config"
 
 class("Game")
 
-function Game:Game(config)
-    self.config = config
-    self.broker = b.Init(self)
-    self.world  = w.Init(self)
+function Game:Game(settings)
+    self.settings = settings
+    c:Configure(self)
 end
 
-function Game:Start()
+function Game:__call(s)
+    return self.settings.Get(s)
+end
+
+function Game:Enter()
 end
 
 function Game:Exit()

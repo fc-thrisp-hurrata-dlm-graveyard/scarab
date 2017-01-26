@@ -14,8 +14,8 @@ local GameWindowSystem = ecs.system(gameWindow())
 
 local isGameWindow = ecs.requireAll("game", "window")
 
-function GameWindowSystem:Init(broker, world)
-    self.window = GameWindow(broker, world)
+function GameWindowSystem:Init(game)
+    self.window = GameWindow(game)
 end
 
 function GameWindowSystem:Current()

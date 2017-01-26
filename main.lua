@@ -1,6 +1,7 @@
 require "game"
+local settings = require "settings"
 
-function loadConfig(path)
+--[[function load(path)
     local f, e = loadfile(path)
     if f == nil then
         print(e) -- handle error; e has the error message
@@ -13,13 +14,13 @@ function loadConfig(path)
     end
 
     return f()
-end
+end]]
 
-function main(path)
-    local config = loadConfig(path)
-    local game = Game(config)
-    game:Start()
+function main(s)
+    --local settings = load(settings)
+    local game = Game(s)
+    game:Enter()
 end
 
 noglobals()
-main("config.lua")
+main(settings)

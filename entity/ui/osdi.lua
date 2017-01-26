@@ -1,6 +1,7 @@
 require "util.class"
 require "util.event"
 require "system.system"
+local tt = require "util.table"
 
 class("Font")
 
@@ -322,8 +323,9 @@ local function blockFn(root, blocker, block)
     end
 end
 
-function OSDI:Init(world, broker)
+function OSDI:Init(world, broker)  
     local ev = Eventer()
+    self.eventer = ev
     local events = {}
     local subscriptions = {}
     local blocker = Blocker("debugger", {X=0, Y=0}) -- Blocker("debugger", {X=w.left+10, Y=w.top-10})
@@ -331,11 +333,10 @@ function OSDI:Init(world, broker)
         table.insert(subscriptions, "KEYBOARD_PRESSED_" .. v.button)
         table.insert(events, Event(v.button, blockFn(self.root, blocker, v)))
     end
-    broker:Subscribe(self, subscriptions)
+
     ev:Set(events)
-    self.world = world
-    self.broker = broker
-    self.eventer = ev
+
+    broker:Subscribe(self, subscriptions)
 end
 
 function OSDI:process(dt, mouse, left, right)

@@ -75,8 +75,6 @@ function table_tostring(t, indent, seen, depth)
     end
 end
 
----util.table_to_string = table_tostring 
-
 local function pprint(tt, indent, done)
   done = done or {}
   indent = indent or 0
@@ -93,7 +91,7 @@ local function pprint(tt, indent, done)
         io.write(")\n");
       else
         io.write(string.format("[%s] => %s\n",
-            tostring (key), tostring(value)))
+            tostring(key), tostring(value)))
       end
     end
   else

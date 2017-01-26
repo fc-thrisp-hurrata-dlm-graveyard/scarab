@@ -67,3 +67,11 @@ function Cursor:update(position)
         r:position(position)
     end
 end
+
+local function init(game)
+    return Cursor()
+end
+
+return {
+    Init = init,
+}

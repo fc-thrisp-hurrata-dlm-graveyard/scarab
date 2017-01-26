@@ -1,17 +1,15 @@
 require "util.class"
 require "util.ecs"
 require "system.system"
---require "entity.ui.windows"
---require "entity.ui.window" 
---require "entity.ui.osdi"
+local tt = require "util.table" 
 
-class"WidgetsSystem" ( "system" )
+class"widgetsSystem" ( "system" )
 
-function WidgetsSystem:WidgetsSystem()
+function widgetsSystem:widgetsSystem()
     system.system(self)
 end
 
-local WidgetsSystem = ecs.processingSystem(WidgetsSystem()) 
+local WidgetsSystem = ecs.processingSystem(widgetsSystem()) 
 
 local isWidgets = ecs.requireAll("ui", "widgets")
 
@@ -22,44 +20,7 @@ function WidgetsSystem:Init(root, broker)
     broker:Subscribe(self, self.subscriptions)
 end
 
---[[local testWidgets = Windows()
-
-local function default(tag, x, y)
-    return Window(
-        tag,
-        Position(x, y),
-        Size(25,25),
-        Border(1, vec4(0,1,1,1), vec4(.25,0,1,1)),
-        Background(vec4(0,0,1,1), vec4(.7,1,0,1)),
-        {
-            --function(w) print("entered " .. w.tag) end,
-            function(w) w.background:onEnter() end,
-            function(w) w.border:onEnter() end,
-        },
-        {
-            --function(w) print("exited " .. w.tag) end,
-            function(w) w.background:onExit() end,
-            function(w) w.border:onExit() end, 
-        },
-        {
-            --function(w) print("left click " .. w.tag) end
-        },
-        {
-            --function(w) print("right click " .. w.tag) end
-        }
-    )
-end]]
-
---math.randomseed(os.time())
-
-function WidgetsSystem:onAddToWorld(w)
-    --self.world:addEntity(testWidgets)
-    --for i = 1,10000 do
-    --    local nw = default("W-"..i, math.random(-400, 400), math.random(-400, 400))        
-    --    self.world:addEntity(nw)
-    --    testWidgets.stack:push(nw)
-    --end
-    --self.world:addEntity(OSDI())
+function WidgetsSystem:onAddToWorld(w) 
 end
 
 function WidgetsSystem:onAdd(e)

@@ -1,7 +1,7 @@
 require "util.class"
 require "util.buffer"
 require "util.history"
-local t = require "util.table"
+local tt = require "util.table"
 
 class("Service")
 
@@ -75,8 +75,11 @@ function Broker:Publish(service)
     local deferred = self.deferred[service.tag]
     if deferred then
         for _, subscriber in ipairs(deferred) do
-            self:Subscribe(service, subscriber)
+            service:Subscribe(subscriber)--self:Subscribe(service, subscriber)
         end
+        --tt.pprint(deferred)
+        -- deferred = {}
+        -- table.remove(self.deferred, service.tag)
     end
     return function()
        service:Publish()

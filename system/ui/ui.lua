@@ -4,13 +4,13 @@ local cps = require "system.ui.cursor"
 local wss = require "system.ui.widgets"
 --local ws  = require "system.ui.widget"
 
-class"UISystem"
+class"uiSystem"
 
-function UISystem:UISystem()
+function uiSystem:uiSystem()
     subsystem = {}
 end
 
-local UISystem = ecs.processingSystem(UISystem()) 
+local UISystem = ecs.processingSystem(uiSystem()) 
 
 local isUI = ecs.requireAll("ui")
 
@@ -22,7 +22,9 @@ function initSubsystem(root, broker)
     return ret
 end
 
-function UISystem:Init(root, broker)
+function UISystem:Init(game)
+    local root = game.window.scene
+    local broker = game.broker
     self.subsystem = initSubsystem(root, broker)
 end
 
@@ -33,7 +35,9 @@ function UISystem:onAddToWorld(world)
 end
 
 function UISystem:onRemoveFromWorld(world)
-    world:removeEntity(c)
+    for _, v in ipairs(self.subsystem) do
+        world:removeSystem(v)
+    end
 end
 
 function UISystem:process(e, dt)

@@ -16,7 +16,7 @@ end
 
 local function hovered(mouse, stack)
     local l = stack:list()
-    local ret = 1000
+    local ret = 10000000
     for _, v in ipairs(l) do
         if v:IsInside(mouse) then
             local p = v.position:z() 

@@ -17,19 +17,20 @@ function CursorPositionSystem:Init(root, broker)
     broker:Subscribe(self, self.subscriptions)
 end
 
-local defaultCursor = Cursor()
+--local defaultCursor
 
-function CursorPositionSystem:onAddToWorld(w)
-    w:addEntity(defaultCursor)
-end
+--function CursorPositionSystem:onAddToWorld(w)
+    --defaultCursor = Cursor()
+    --w:addEntity(defaultCursor)
+--end
 
 function CursorPositionSystem:onAdd(e)
     self.root:SetCursor(e.root)
 end
 
-function CursorPositionSystem:onRemoveFromWorldd(w)
-    w:removeEntity(defaultCursor)
-end
+--function CursorPositionSystem:onRemoveFromWorldd(w)
+    --w:removeEntity(defaultCursor)
+--end
 
 function CursorPositionSystem:onRemove(e)
     self.root:RemoveCursor(e.root)

@@ -1,12 +1,5 @@
 require "util.class"
 
-local current = am.window{    
-    title = "scarab: a skeleton, toy, and test framework for the Amulet game framework",
-    letterbox = false,
-    clear_color = vec4(0.01, 0.01, 0.01, 1),
-    show_cursor = false,
-}
-
 function uiNode()
     local root = am.translate(0,0):tag("UI-ROOT")
 
@@ -113,7 +106,6 @@ end
 local function attachRoot(window)
     local root = rootNode() 
     window.scene = root
-    return window
 end
 
 local function attachWorld(window, world)
@@ -128,16 +120,19 @@ local function attachWorld(window, world)
                 end
             end)
     )
-
-    return window
 end
 
 class("GameWindow")
 
-function GameWindow:GameWindow(broker, world)
+function GameWindow:GameWindow(game)
+    local current = game.window
+    -- local broker  = game.broker
+    local world = game.world
     self.game = true
     self.window = true
-    self.game_window = attachWorld(attachRoot(current), world)
+    attachRoot(current)
+    attachWorld(current, world)
+    self.game_window = current
 end
 
 function GameWindow:Current()

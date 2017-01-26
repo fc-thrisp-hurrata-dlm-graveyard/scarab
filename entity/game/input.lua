@@ -160,7 +160,10 @@ local function mouseDefaults(window, broker)
     }
 end
 
-local function init(window, broker)
+local function init(game)
+    local window = game.window
+    local broker = game.broker
+
     local i = {}
 
     local k = keyboardDefaults(window, broker)

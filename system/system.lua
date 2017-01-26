@@ -13,8 +13,9 @@ end
 function system:GetMessageInfo(tag)
     local m = self.messages[tag]
     if m ~= nil then
+        local ret = m.info
         self.messages[tag] = nil
-        return m.info
+        return ret
     end
 end
 
@@ -33,4 +34,8 @@ function system:GetBulk()
         ret[v] = self:GetMessageInfo(v)
     end
     return ret
+end
+
+function system:__tostring()
+    return "<system>"
 end

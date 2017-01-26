@@ -328,6 +328,9 @@ end
 function ecs.system(table)
     table = table or {}
     table[systemTableKey] = true
+    table.__tostring = function()
+        return "<scarab_ecs_basic_system>"
+    end
     return table
 end
 
@@ -347,6 +350,9 @@ function ecs.processingSystem(table)
     table = table or {}
     table[systemTableKey] = true
     table.update = processingSystemUpdate
+    table.__tostring = function()
+        return "<scarab_ecs_processing_system>"
+    end
     return table
 end
 
@@ -361,6 +367,9 @@ function ecs.sortedSystem(table)
     table = table or {}
     table[systemTableKey] = true
     table.onModify = sortedSystemOnModify
+    table.__tostring = function()
+        return "<scarab_ecs_sorted_system>"
+    end
     return table
 end
 
